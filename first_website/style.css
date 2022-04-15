@@ -1,0 +1,13 @@
+body{
+    margin: 10%;
+}
+html{
+    background-color: rgb(233, 215, 255);
+}
+.xiaohei{
+    position: fixed;
+    bottom: -30px;
+    left: 5px;
+    /* width: 80px;
+    height: 80px; */
+}

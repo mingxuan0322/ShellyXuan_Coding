@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(207, 239, 255);
+    /* margin: 0px; */
+} 
+li{
+    color:blueviolet
+}
+ul{
+    border-color: darksalmon;
+    border: width 1px;
+    border-style: dotted;
+}
+.first{
+    font-size: 20px;
+}
+.second{
+    text-decoration:underline
+}
+.box{
+    /* background-color: rgb(210, 253, 255); */
+    border-color: rgba(197, 147, 255, 0.774);
+    border-width: 2px;
+    border-style: solid;
+
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 300px;
+    height:100vh--the same height as the window
+}
+.Box1{
+    left: 0px;
+}
+.Box2{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    /* quite interesting */
+}
+.Box3{
+    position: absolute;
+    top:0px;
+    left:270px
+}
+
+.Box4{
+    position: relative;
+    left: 0px;
+    /* top: 20px; */
+}

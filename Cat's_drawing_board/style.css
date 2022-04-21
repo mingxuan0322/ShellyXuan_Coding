@@ -18,8 +18,8 @@ canvas {
 
 .xiaohei{
   position: fixed;
-  bottom: -30px;
-  right: 10px;
+  bottom: 6px;
+  right: 2px;
   z-index: 3;
   /* width: 80px;
   height: 80px; */

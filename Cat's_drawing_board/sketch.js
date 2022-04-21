@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
   let cnv= createCanvas(450, 450);
-  cnv.parent("canvasCountainer")
+  cnv.parent("canvasContainer")
   
   background(255);
 }

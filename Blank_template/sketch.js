@@ -1,6 +1,6 @@
 function setup() {
-  let cnv=reateCanvas(400, 400);
-  cnv.parent("canvaCountainer")
+  let cnv=ceateCanvas(400, 400);
+  cnv.parent("canvasContainer")
 }
 
 function draw() {

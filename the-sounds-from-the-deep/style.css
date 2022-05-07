@@ -30,6 +30,7 @@ canvas {
   width: 500px;
   margin: 0 auto;
   margin-bottom: 20px;
+  padding-top: 70px;
   position:relative;
   z-index: 2;
 }
@@ -136,10 +137,11 @@ img{
 	list-style-type:none;
 	margin:0;
 	padding:0;
-	padding-top:6px;
+  padding-left: 20px;
+	padding-top:10px;
 	padding-bottom:6px;
   position: fixed;
-  z-index: 11;
+  z-index: 13;
   color: #fdfdfd;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }

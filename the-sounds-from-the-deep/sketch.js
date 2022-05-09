@@ -7,19 +7,40 @@
 //Amazing ripple:
 //https://editor.p5js.org/codingtrain/sketches/tYXtzNSl
 let bg;
-let beat;
+// let beat;
 let ripples;
 let wind;
 let things = [];
 let bird;
 let bi;
-
+let loopingSounds=[]
+let clickSounds=[]
+let board;
+let boardactive=true
 
 
 function preload() {
-  beat = loadSound("assets/Bubbles.mp3");
+  // beat = loadSound("assets/005Bubbles.mp3");
+  loopingSounds[0]=loadSound("assets/00fairy-start.wav");
+  loopingSounds[1] = loadSound("assets/01rain.mp3");
+  loopingSounds[2] = loadSound("assets/02Ambience_Wind Chimes_B.wav");
+  loopingSounds[3] = loadSound("assets/03wind.mp3");
+  loopingSounds[4] = loadSound("assets/04bird-whistling-a.wav");
+  loopingSounds[5] = loadSound("assets/05river-side-klankbeeld.wav");
+  loopingSounds[6] = loadSound("assets/06insects.mp3");
+
+  // clickSounds[0]=loadSound("assets/")
+  clickSounds[1]=loadSound("assets/001drops.mp3")
+  clickSounds[2]=loadSound("assets/002magic.flac")
+  clickSounds[3]=loadSound("assets/003leaves.wav")
+  clickSounds[4]=loadSound("assets/004whist.wav")
+  clickSounds[5]=loadSound("assets/005Bubbles.mp3")
+  clickSounds[6]=loadSound("assets/006frog.wav")
+
+
   bg = loadImage("assets/Jungle.jpg");
   bi=loadImage("assets/bird.gif")
+  board=loadImage("assets/direction_board.png")
 }
 
 function setup() {
@@ -35,6 +56,23 @@ function draw() {
   background(220);
   tint(80, 100, 100, 150);
   background(bg, 20);
+  //direction-board
+  if(boardactive==false){
+    tint(255,240)
+  }else{
+    fill(200,200,200)
+  }
+  image(board, 10,height/3*2.1,width/5,height/3.5)
+
+  push();
+  textSize(21);
+  text("CLICK",20,height/3*2.35);
+  pop();
+
+  push()
+  noFill()
+  rect(16,305,70,34)
+  pop()
 
   //structure
   line(width / 3, 0, 0, (height / 3) * 2);
@@ -44,7 +82,7 @@ function draw() {
   line(width / 6, height / 3, (width / 3) * 2, height / 3);
   line(width / 4, (height / 3) * 2, width / 4, height);
 
-  things[0].display();
+
 
   //structure!!!
   let h = height;
@@ -53,31 +91,70 @@ function draw() {
   let y = (mouseY / h) * 3;
 
   if (2 * x + y - 2 <= 0) {
-    //左上
+    //左上-1
     fill(100, 250, 250);
+  }else if (2 * x + y - 2 > 0 && x - y - 1 <= 0 && y <= 1) {
+    //中上-2
+    fill(250, 100, 100);
   } else if (x - y - 1 >= 0) {
-    //右上
+    //右上-3
     fill(250, 250, 250);
-  } else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > width / 4) {
-    //中下
+  }  else if (2 * x + y - 2 > 0 && x - y - 1 < 0 && y < 2 && y > 1) {
+    //中中-4
+    fill(200, 250, 250);
+  }else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > 0.75) {
+    //中下-5
     fill(100, 100, 250);
   } else if (0.5 * x + y - 3.5 > 0) {
-    //右下
+    //右下-6
     fill(250, 100, 250);
-  } else if (2 * x + y - 2 > 0 && x - y - 1 <= 0 && y <= 1) {
-    //中上
-    fill(250, 100, 100);
-  } else if (2 * x + y - 2 > 0 && x - y - 1 < 0 && y < 2 && y > 1) {
-    //中中
-    fill(200, 250, 250);
-  }
+  } else(
+    //左下--0
+    fill(0)
+  )
   circle(mouseX, mouseY, 10);
 
   //
+
+  things[0].display();
 }
 
 function mousePressed() {
-  beat.play();
+
+  let h = height;
+  let w = width;
+  let x = (mouseX / w) * 3;
+  let y = (mouseY / h) * 3;
+
+  if (2 * x + y - 2 <= 0) {
+    //左上-1
+    clickSounds[1].play()
+  }else if (2 * x + y - 2 > 0 && x - y - 1 <= 0 && y <= 1) {
+    //中上-2
+    clickSounds[2].play()
+  } else if (x - y - 1 >= 0) {
+    //右上-3
+    clickSounds[3].play()
+  }  else if (2 * x + y - 2 > 0 && x - y - 1 < 0 && y < 2 && y > 1) {
+    //中中-4
+    clickSounds[4].play()
+  }else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > 0.75) {
+    //中下-5
+    clickSounds[5].play()
+  } else if (0.5 * x + y - 3.5 > 0) {
+    //右下-6
+    clickSounds[6].play()
+  } else{
+    //左下--0
+    // fill(0)
+  }
+
+//Problem of push
+  rect(16,305,70,34)
+  if(mouseX> 16 && mouseX <86 && mouseY>305 && mouseY<339){
+    things.push(new Thing(width / 10, (height / 10) * 9))
+  }
+
 }
 function mouseDragged() {
   things[0].update();

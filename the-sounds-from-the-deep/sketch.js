@@ -75,6 +75,7 @@ function draw() {
   pop()
 
   //structure
+  stroke(200,250,200,50)
   line(width / 3, 0, 0, (height / 3) * 2);
   line(width / 3, 0, width, (height / 3) * 2);
   line(width / 3, height, width, (height / 3) * 2);

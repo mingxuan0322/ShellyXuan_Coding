@@ -33,6 +33,7 @@ canvas {
   padding-top: 70px;
   position:relative;
   z-index: 2;
+  padding-bottom: 100px;
 }
 .instruction{
   width: 400px;
@@ -128,7 +129,13 @@ canvas {
   filter: grayscale(100%);
   filter: brightness(0%);
 }
-
+.introduction{
+  color: #fff1ced2 ;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  padding: 25px;
+  border-radius: 10%;
+  background-color: #e6ffb833;
+}
 
 img{
     -webkit-user-drag: none;
@@ -160,6 +167,15 @@ img{
   z-index: 13;
   color: #fdfdfd;
   font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.xiaohei{
+  position: fixed;
+  top: 2px;
+  right: 20%;
+  z-index: 3;
+  /* width: 80px;
+  height: 80px; */
 }
 
 li{

@@ -55,6 +55,13 @@ function setup() {
   wind = new Wind();
   ripples=new Ripple()
   bird = new Bird();
+  loopingSounds[2].setVolume(0.1)
+  loopingSounds[0].setVolume(0.3)
+  loopingSounds[1].setVolume(0.7)
+  clickSounds[2].setVolume(0.4)
+  clickSounds[4].setVolume(0.5)
+  clickSounds[6].setVolume(0.5)
+
   // things[0] = new Thing(width / 10, (height / 10) * 9);
 }
 
@@ -84,13 +91,13 @@ function draw() {
   // pop()
 
   //structure
-  stroke(200,250,200,50)
-  line(width / 3, 0, 0, (height / 3) * 2);
-  line(width / 3, 0, width, (height / 3) * 2);
-  line(width / 3, height, width, (height / 3) * 2);
-  line(width, (height / 3) * 2, 0, (height / 3) * 2);
-  line(width / 6, height / 3, (width / 3) * 2, height / 3);
-  line(width / 4, (height / 3) * 2, width / 4, height);
+  // stroke(200,250,200,50)
+  // line(width / 3, 0, 0, (height / 3) * 2);
+  // line(width / 3, 0, width, (height / 3) * 2);
+  // line(width / 3, height, width, (height / 3) * 2);
+  // line(width, (height / 3) * 2, 0, (height / 3) * 2);
+  // line(width / 6, height / 3, (width / 3) * 2, height / 3);
+  // line(width / 4, (height / 3) * 2, width / 4, height);
 
 
 
@@ -128,6 +135,7 @@ function draw() {
   //display
   for (let i = 0; i < things.length; i++) {
     things[i].display();
+    things[i].update()
   }
 
   //judge play
@@ -188,22 +196,27 @@ function mousePressed() {
     if(mouseX> 16 && mouseX <86 && mouseY>305 && mouseY<339){
       let f=new Thing(random(10,width / 5), random((height / 4)*3,height-10))
       things.push(f)
+      loopingSounds[0].play()
     }
   }
- 
 
-}
-function mouseDragged() {
   for (let i = 0; i < things.length; i++) {
-    things[i].update();
+    things[i].checkMove()
   }
 
 }
+// function mouseDragged() {
+//   for (let i = 0; i < things.length; i++) {
+//     things[i].update();
+//   }
+
+// }
 
 class Thing {
   constructor(startX, startY) {
     this.x = startX;
     this.y = startY;
+    this.thingmove=false
   }
 
   display() {
@@ -254,14 +267,20 @@ class Thing {
     pop();
   }
   update() {
-    //drag the wind
-    let dis = dist(mouseX, mouseY, this.x, this.y);
-    if (dis < 30) {
+    if(this.thingmove){
       this.x = mouseX;
       this.y = mouseY;
     }
-     
-   } 
+
+  } 
+
+  checkMove(){
+   //drag the wind
+   let dis = dist(mouseX, mouseY, this.x, this.y);
+   if (dis < 30) {
+    this.thingmove=!this.thingmove
+   }
+  }
   checkArea(){
     
     let h = height;
@@ -289,7 +308,7 @@ class Thing {
       soundPlay[6]=true
     } else{
       //左下--0
-      soundPlay[0]=true
+      // soundPlay[0]=true
     }
   }
   
@@ -336,7 +355,7 @@ class Ripple {
   display() {
     push();
     noFill();
-    circle(0, 0, 60);
+    // circle(0, 0, 60);
     //leaves
     for (let i = 0; i < 4; i++) {
       push();
@@ -396,7 +415,7 @@ class Wind {
   display() {
     push();
     noFill();
-    circle(0, 0, 60);
+    // circle(0, 0, 60);
     //leaves
     for (let i = 0; i < 4; i++) {
       // console.log(this.ly[1]);

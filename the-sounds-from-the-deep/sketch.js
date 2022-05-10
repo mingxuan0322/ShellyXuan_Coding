@@ -239,7 +239,7 @@ class Thing {
     if (2 * x + y - 2 <= 0) {
       //左上--wind
       wind.display();
-      wind.move();
+      wind.move()
     } else if (x - y - 1 >= 0) {
       //右上
       wind.display();
@@ -249,7 +249,7 @@ class Thing {
       ripples.display();
       ripples.move();
     } else if (x <= 1 && y > 2) {
-      circle(0, 0, 50);
+      circle(0, 0, 30);
     } else if (0.5 * x + y - 3.5 > 0) {
       //右下--
       bird.display();

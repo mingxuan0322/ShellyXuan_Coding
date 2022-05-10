@@ -49,7 +49,7 @@ function setup() {
   wind = new Wind();
   ripples=new Ripple()
   bird = new Bird();
-  things[0] = new Thing(width / 10, (height / 10) * 9);
+  // things[0] = new Thing(width / 10, (height / 10) * 9);
 }
 
 function draw() {
@@ -57,10 +57,10 @@ function draw() {
   tint(80, 100, 100, 150);
   background(bg, 20);
   //direction-board
-  if(boardactive==false){
+  if(boardactive==true){
     tint(255,240)
   }else{
-    fill(200,200,200)
+    tint(100,100)
   }
   image(board, 10,height/3*2.1,width/5,height/3.5)
 
@@ -69,10 +69,10 @@ function draw() {
   text("CLICK",20,height/3*2.35);
   pop();
 
-  push()
-  noFill()
-  rect(16,305,70,34)
-  pop()
+  // push()
+  // noFill()
+  // rect(16,305,70,34)
+  // pop()
 
   //structure
   stroke(200,250,200,50)
@@ -91,33 +91,36 @@ function draw() {
   let x = (mouseX / w) * 3;
   let y = (mouseY / h) * 3;
 
-  if (2 * x + y - 2 <= 0) {
+  if (2 * x + y - 2 <= 0 &&x>0 && y>0) {
     //左上-1
     fill(100, 250, 250);
   }else if (2 * x + y - 2 > 0 && x - y - 1 <= 0 && y <= 1) {
     //中上-2
     fill(250, 100, 100);
-  } else if (x - y - 1 >= 0) {
+  } else if (x - y - 1 >= 0&&x<3 && y>0) {
     //右上-3
     fill(250, 250, 250);
   }  else if (2 * x + y - 2 > 0 && x - y - 1 < 0 && y < 2 && y > 1) {
     //中中-4
     fill(200, 250, 250);
-  }else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > 0.75) {
+  }else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > 0.75 && y<3) {
     //中下-5
     fill(100, 100, 250);
-  } else if (0.5 * x + y - 3.5 > 0) {
+  } else if (0.5 * x + y - 3.5 > 0&& y<3 && x<3) {
     //右下-6
     fill(250, 100, 250);
-  } else(
+  } else{
     //左下--0
     fill(0)
-  )
+  }
+
   circle(mouseX, mouseY, 10);
 
   //
+  for (let i = 0; i < things.length; i++) {
+    things[i].display();
+  }
 
-  things[0].display();
 }
 
 function mousePressed() {
@@ -151,14 +154,18 @@ function mousePressed() {
   }
 
 //Problem of push
-  rect(16,305,70,34)
+  // rect(16,305,70,34)
   if(mouseX> 16 && mouseX <86 && mouseY>305 && mouseY<339){
-    things.push(new Thing(width / 10, (height / 10) * 9))
+    let f=new Thing(width / 10, (height / 10) * 9)
+    things.push(f)
   }
 
 }
 function mouseDragged() {
-  things[0].update();
+  for (let i = 0; i < things.length; i++) {
+    things[i].update();
+  }
+
 }
 
 class Thing {

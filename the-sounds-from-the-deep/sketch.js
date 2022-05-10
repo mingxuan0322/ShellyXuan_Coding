@@ -17,7 +17,8 @@ let loopingSounds=[]
 let clickSounds=[]
 let board;
 let boardactive=true
-
+let soundPlay=[]
+let soundIsPlaying=[]
 
 function preload() {
   // beat = loadSound("assets/005Bubbles.mp3");
@@ -37,6 +38,11 @@ function preload() {
   clickSounds[5]=loadSound("assets/005Bubbles.mp3")
   clickSounds[6]=loadSound("assets/006frog.wav")
 
+  //default soundPlay
+  for(let i=0;i<7;i++){
+    soundPlay[i]=false
+    soundIsPlaying[i]=false
+  }
 
   bg = loadImage("assets/Jungle.jpg");
   bi=loadImage("assets/bird.gif")
@@ -57,6 +63,9 @@ function draw() {
   tint(80, 100, 100, 150);
   background(bg, 20);
   //direction-board
+  if(things.length>=3){
+    boardactive=false
+  }
   if(boardactive==true){
     tint(255,240)
   }else{
@@ -114,12 +123,33 @@ function draw() {
     fill(0)
   }
 
-  circle(mouseX, mouseY, 10);
+  // circle(mouseX, mouseY, 10);
 
-  //
+  //display
   for (let i = 0; i < things.length; i++) {
     things[i].display();
   }
+
+  //judge play
+  for(let i=0;i<things.length;i++){
+    things[i].checkArea()
+  }
+
+  //soundplay
+  for (let i = 0; i < 7; i++) {
+    if(soundIsPlaying[i]==false && soundPlay[i]==true){
+      loopingSounds[i].loop()
+      soundIsPlaying[i]=soundPlay[i]
+    }else if(soundIsPlaying[i]==true && soundPlay[i]==false){
+      loopingSounds[i].stop()
+      soundIsPlaying[i]=soundPlay[i]
+    }
+  }
+  //default soundplay
+  for(let i=0;i<7;i++){
+    soundPlay[i]=false
+  }
+
 
 }
 
@@ -149,16 +179,18 @@ function mousePressed() {
     //右下-6
     clickSounds[6].play()
   } else{
-    //左下--0
-    // fill(0)
+    // clickSounds[0].play()
   }
 
 //Problem of push
   // rect(16,305,70,34)
-  if(mouseX> 16 && mouseX <86 && mouseY>305 && mouseY<339){
-    let f=new Thing(width / 10, (height / 10) * 9)
-    things.push(f)
+  if (boardactive==true){
+    if(mouseX> 16 && mouseX <86 && mouseY>305 && mouseY<339){
+      let f=new Thing(random(10,width / 5), random((height / 4)*3,height-10))
+      things.push(f)
+    }
   }
+ 
 
 }
 function mouseDragged() {
@@ -224,7 +256,7 @@ class Thing {
   update() {
     //drag the wind
     let dis = dist(mouseX, mouseY, this.x, this.y);
-    if (dis < 50) {
+    if (dis < 30) {
       this.x = mouseX;
       this.y = mouseY;
     }
@@ -232,6 +264,33 @@ class Thing {
    } 
   checkArea(){
     
+    let h = height;
+    let w = width;
+    let x = (this.x / w) * 3;
+    let y = (this.y / h) * 3;
+
+    if (2 * x + y - 2 <= 0 &&x>0 && y>0) {
+      //左上-1
+      soundPlay[1]=true
+    }else if (2 * x + y - 2 > 0 && x - y - 1 <= 0 && y <= 1) {
+      //中上-2
+      soundPlay[2]=true
+    } else if (x - y - 1 >= 0&&x<3 && y>0) {
+      //右上-3
+      soundPlay[3]=true
+    }  else if (2 * x + y - 2 > 0 && x - y - 1 < 0 && y < 2 && y > 1) {
+      //中中-4
+      soundPlay[4]=true
+    }else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > 0.75 && y<3) {
+      //中下-5
+      soundPlay[5]=true
+    } else if (0.5 * x + y - 3.5 > 0&& y<3 && x<3) {
+      //右下-6
+      soundPlay[6]=true
+    } else{
+      //左下--0
+      soundPlay[0]=true
+    }
   }
   
 }

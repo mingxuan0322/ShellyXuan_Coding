@@ -78,6 +78,8 @@ function draw() {
   //direction-board
   if(things.length>=3){
     boardactive=false
+  }else{
+    boardactive=true
   }
   if(boardactive==true){
     tint(255,240)

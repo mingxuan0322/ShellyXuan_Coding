@@ -38,8 +38,8 @@ canvas {
 .instruction{
   width: 400px;
   margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 150px;
+  margin-bottom: 140px;
   padding-bottom: 20px;
   padding-left: 30px;
   /* padding-right: 0px; */
@@ -62,9 +62,9 @@ canvas {
 }
 .img02{
   position: fixed;
-  right: 50%;
+  right: 72%;
   top:30%;
-  transform: translate(-38%,-70%);
+  transform: translate(10%,-70%);
   opacity: 0.8;
   z-index: 10;
 }
@@ -123,6 +123,17 @@ canvas {
   left: 100%;
   top: 58%;
   transform: translate(-56%,-30%);
+  opacity: 0.5;
+  z-index: 10;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  filter: brightness(0%);
+}
+.img08{
+  position: fixed;
+  left: 52%;
+  top:0%;
+  transform: translate(-50%,-12%);
   opacity: 0.5;
   z-index: 10;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */

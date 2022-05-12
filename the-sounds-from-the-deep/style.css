@@ -15,7 +15,23 @@ canvas {
   top: 50%;
   transform: translate(-50%, -50%);
   margin-top: 20px;
-  background-color: #128a7cdf;
+  background-color: #18baa7df;
+  color: #fffbef;
+  border-radius: 25%;
+  border-width: 0.8mm;
+  border-color: #0075be;
+  
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  
+}
+
+#borderHint{
+  position: relaxtive;
+  left: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 20px;
+  background-color: #0fcbd4df;
   color: #fffbef;
   border-radius: 25%;
   border-width: 0.8mm;

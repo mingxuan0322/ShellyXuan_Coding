@@ -19,11 +19,11 @@ let board;
 let boardactive=true
 let soundPlay=[]
 let soundIsPlaying=[]
-// let theRefreshButton=document.getElementById("refreshButton")
-// // if(theRefreshButton){
-// //   theRefreshButton.addEventListener("click",refreshCanvas)
-// // }
-// theRefreshButton.addEventListener("click",refreshCanvas)
+let theRefreshButton=document.getElementById("refreshButton")
+// if(theRefreshButton){
+//   theRefreshButton.addEventListener("click",refreshCanvas)
+// }
+theRefreshButton.addEventListener("click",refreshCanvas)
 
 
 function preload() {
@@ -189,7 +189,7 @@ function mousePressed() {
   }else if (0.5 * x + y - 3.5 <= 0 && y >= 2 && x > 0.75) {
     //中下-5
     clickSounds[5].play()
-  } else if (0.5 * x + y - 3.5 > 0) {
+  } else if (0.5 * x + y - 3.5 > 0 && x<3 && y<3) {
     //右下-6
     clickSounds[6].play()
   } else{
@@ -320,16 +320,16 @@ class Thing {
   
 }
 
-// function refreshCanvas(){
-//   // let t=things.length
-//   // for(let i=0;i<t;i++){
-//   //     let index = 0;
-//   //     things.splice(index, 1);
-//   // }
-//   things=[]
-//   console.log(theRefreshButton)
-//   // redraw()
-// }
+function refreshCanvas(){
+  // let t=things.length
+  // for(let i=0;i<t;i++){
+  //     let index = 0;
+  //     things.splice(index, 1);
+  // }
+  things=[]
+  console.log(theRefreshButton)
+  // redraw()
+}
 
 
 

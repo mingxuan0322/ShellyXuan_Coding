@@ -9,6 +9,22 @@ canvas {
   display: block;
 }
 
+#refreshButton{
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 20px;
+  background-color: #128a7cdf;
+  color: #fffbef;
+  border-radius: 25%;
+  border-width: 0.8mm;
+  border-color: #0075be;
+  
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  
+}
+
 #canvasContainer{
   /* position: absolute; */
   /* left: 50%;

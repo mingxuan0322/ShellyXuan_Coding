@@ -19,6 +19,12 @@ let board;
 let boardactive=true
 let soundPlay=[]
 let soundIsPlaying=[]
+// let theRefreshButton=document.getElementById("refreshButton")
+// // if(theRefreshButton){
+// //   theRefreshButton.addEventListener("click",refreshCanvas)
+// // }
+// theRefreshButton.addEventListener("click",refreshCanvas)
+
 
 function preload() {
   // beat = loadSound("assets/005Bubbles.mp3");
@@ -277,7 +283,7 @@ class Thing {
   checkMove(){
    //drag the wind
    let dis = dist(mouseX, mouseY, this.x, this.y);
-   if (dis < 30) {
+   if (dis < 20) {
     this.thingmove=!this.thingmove
    }
   }
@@ -313,6 +319,19 @@ class Thing {
   }
   
 }
+
+// function refreshCanvas(){
+//   // let t=things.length
+//   // for(let i=0;i<t;i++){
+//   //     let index = 0;
+//   //     things.splice(index, 1);
+//   // }
+//   things=[]
+//   console.log(theRefreshButton)
+//   // redraw()
+// }
+
+
 
 class Bird {
   constructor() {
